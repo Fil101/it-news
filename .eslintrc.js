@@ -48,6 +48,7 @@ module.exports = {
         ],
         'no-trailing-spaces': 'off',
         'max-len': ['error', { ignoreComments: true, code: 100 }],
+        'arrow-body-style': 'off',
     },
     globals: {
         __IS_DEV__: true,
