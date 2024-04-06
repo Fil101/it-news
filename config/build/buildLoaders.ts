@@ -1,9 +1,8 @@
-import webpack from "webpack";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import {BuildOptions} from "./types/config";
+import webpack from 'webpack';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { BuildOptions } from './types/config';
 
-export function buildLoaders ({isDev}: BuildOptions): webpack.RuleSetRule[]  {
-
+export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     // Если не используем TypeScript, то необходимо использовать babel-loader
     const tsLoader = {
         test: /\.tsx?$/,
@@ -15,22 +14,21 @@ export function buildLoaders ({isDev}: BuildOptions): webpack.RuleSetRule[]  {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
                 presets: ['@babel/preset-env'],
-                "plugins": [
+                plugins: [
                     [
-                        "i18next-extract",
+                        'i18next-extract',
                         {
                             locales: ['ru', 'en'],
-                            keyAsDefaultValue: true
-                        }
+                            keyAsDefaultValue: true,
+                        },
                     ],
-                ]
-            }
-        }
-    }
-
+                ],
+            },
+        },
+    };
 
     const svgLoader = {
         test: /\.svg$/,
@@ -44,24 +42,24 @@ export function buildLoaders ({isDev}: BuildOptions): webpack.RuleSetRule[]  {
                 loader: 'file-loader',
             },
         ],
-    }
+    };
 
     const cssLoader = {
         test: /\.s[ac]ss$/i,
         use: [
             isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
             {
-                loader: "css-loader",
+                loader: 'css-loader',
                 options: {
                     modules: {
                         auto: /\.module\.\w+$/i,
                         localIdentName: isDev
                             ? '[path][name]__[local]--[hash:base64:8]'
-                            : '[hash:base64:8]'
+                            : '[hash:base64:8]',
                     },
-                }
+                },
             },
-            "sass-loader",
+            'sass-loader',
         ],
     };
 
@@ -71,5 +69,5 @@ export function buildLoaders ({isDev}: BuildOptions): webpack.RuleSetRule[]  {
         babelLoader,
         tsLoader,
         cssLoader,
-    ]
+    ];
 }
