@@ -44,7 +44,7 @@ module.exports = {
         'react/jsx-props-no-spreading': 'off',
         'i18next/no-literal-string': [
             'error',
-            { markupOnly: true, ignoreAttribute: ['to', 'fallback', 'data-testid'] },
+            { markupOnly: true, ignoreAttribute: ['to', 'fallback', 'data-testid', 'defaultNS'] },
         ],
         'no-trailing-spaces': 'off',
         'max-len': ['error', { ignoreComments: true, code: 100 }],

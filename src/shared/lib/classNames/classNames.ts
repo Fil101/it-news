@@ -7,5 +7,3 @@ export const classNames = (cls: string, mods: Mods = {}, additional: string[] = 
         .filter(([, value]) => Boolean(value))
         .map(([className]) => className),
 ].join(' ');
-
-classNames('remove-btn', { hovered: true, selectable: true, red: false }, ['dop-class']);
